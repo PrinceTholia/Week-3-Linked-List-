@@ -12,7 +12,7 @@ struct node
     }
 };
 
-void insert_Beg(node**head, int val);
+void insert_Beg(node* &head, int val);
 node* add_at_the_end(node* ptr, int val);
 int main()
 {
@@ -23,9 +23,9 @@ int main()
     ptr=add_at_the_end(ptr, 6);
     ptr=add_at_the_end(ptr, 7);
     ptr=add_at_the_end(ptr, 8);
-    insert_Beg(&mylist,2);
-    insert_Beg(&mylist,1);
-    insert_Beg(&mylist,0);
+    insert_Beg(mylist,2);
+    insert_Beg(mylist,1);
+    insert_Beg(mylist,0);
     ptr=mylist;
     while(ptr){
         cout<<ptr->data<<" ";
@@ -50,8 +50,8 @@ node* add_at_the_end(node* ptr, int val){
 
 //hi
 // This is pass by reference.
-void insert_Beg(node**head, int val){
+void insert_Beg(node* &head, int val){
     node *temp=new node(val);
-    temp->next= *head;
-    *head=temp;
+    temp->next= head;
+    head=temp;
 }

@@ -12,7 +12,7 @@ struct node
     }
 };
 
-void insert_X(node *&head, int val, int position);
+void insert_X(node* &head, int val, int position);
 node *add_at_the_end(node *ptr, int val);
 int main()
 {
@@ -26,7 +26,7 @@ int main()
     insert_X(mylist, 2, 2);
     insert_X(mylist, 3, 3);
     insert_X(mylist, 1, 1);
-    insert_X(mylist, 9, 0);
+    insert_X(mylist, 9, -1);
     ptr = mylist;
     while (ptr)
     {
@@ -46,16 +46,20 @@ node *add_at_the_end(node *ptr, int val)
 }
 
 void insert_X(node *&head, int val, int position)
-{
-    if(position<=0){position=1;cout<<endl<<position<<endl;}
-    
+{	
     node *temp = new node(val);
     node *current = head;
-    for (int i = 1; i < position - 1; i++)
+    if(position<=0)
     {
-        current = current->next;
+    	temp->next= head;
+    	head=temp;
     }
-    temp->next = current->next;
-    current->next = temp;
-        
+    else{
+	    for (int i = 1; i < position - 1; i++)
+	    {
+		current = current->next;
+	    }
+	    temp->next = current->next;
+	    current->next = temp;
+        }
 }
